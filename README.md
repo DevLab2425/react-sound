@@ -12,7 +12,7 @@ render() {
   return <Sound
     url="cool_sound.mp3"
     playStatus={Sound.status.PLAYING}
-    loops={999 /* any number greater than 0 === infinity in HTML5*/ }
+    loop={true || 1}
     playFromPosition={300 /* in milliseconds */}
     onLoading={this.handleSongLoading}
     onPlaying={this.handleSongPlaying}
