@@ -1,4 +1,4 @@
-import React, {PropTypes as T} from 'react';
+import React, { PropTypes as T } from 'react';
 import { soundManager } from 'soundmanager2';
 
 const pendingCalls = [];
@@ -46,6 +46,7 @@ export default class Sound extends React.Component {
     playStatus: T.oneOf(Object.keys(playStatuses)).isRequired,
     position: T.number,
     playFromPosition: T.number,
+    loop: T.boolean,
     volume: T.number,
     onLoading: T.func,
     onPlaying: T.func,
@@ -55,6 +56,7 @@ export default class Sound extends React.Component {
   static defaultProps = {
     playFromPosition: 0,
     volume: 100,
+    loop: false,
     onLoading: noop,
     onPlaying: noop,
     onFinishedPlaying: noop
@@ -128,6 +130,7 @@ export default class Sound extends React.Component {
     this.stopCreatingSound = createSound({
       url: this.props.url,
       volume: props.volume,
+      loop: (props.loop) ? 1 : 0,
       whileloading() {
         props.onLoading(this);
       },
